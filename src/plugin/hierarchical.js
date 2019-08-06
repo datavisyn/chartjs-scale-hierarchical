@@ -54,13 +54,14 @@ const HierarchicalPlugin = {
   id: 'chartJsPluginHierarchical',
 
   _isValidScaleType(chart, scale) {
-    if (!chart.config.options.scales.hasOwnProperty(scale)) {
+    const scales = chart.config.options.scales;
+    if (!scales.hasOwnProperty(scale)) {
       return false;
     }
-    if (!Array.isArray(chart.config.options.scales[scale])) {
+    if (!Array.isArray(scales[scale])) {
       return false;
     }
-    return chart.config.options.scales[scale][0].hasOwnProperty('type');
+    return scales[scale][0].hasOwnProperty('type');
   },
 
   /**
@@ -184,6 +185,7 @@ const HierarchicalPlugin = {
     const boxSpanColor = scale.options.hierarchySpanColor;
     const boxSpanWidth = scale.options.hierarchySpanWidth;
     const renderLabel = scale.options.hierarchyLabelPosition;
+    const groupLabelPosition = scale.options.hierarchyGroupLabelPosition;
 
     const scaleLabel = scale.options.scaleLabel;
     const scaleLabelFontColor = helpers.valueOrDefault(scaleLabel.fontColor, defaults.global.defaultFontColor);
@@ -210,7 +212,7 @@ const HierarchicalPlugin = {
         }
         return false;
       }
-      const r = spanLogic(node, flat, visibles);
+      const r = spanLogic(node, flat, visibles, groupLabelPosition);
       if (!r) {
         return false;
       }
