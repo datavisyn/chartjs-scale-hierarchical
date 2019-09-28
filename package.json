@@ -14,7 +14,7 @@
   },
   "main": "build/Chart.Hierarchical.js",
   "unpkg": "build/Chart.Hierarchical.min.js",
-  "module": "build/Chart.Hierarchical.mjs",
+  "module": "build/Chart.Hierarchical.esm.js",
   "files": [
     "build",
     "src/**/*.js"
