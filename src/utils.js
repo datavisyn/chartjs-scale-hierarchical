@@ -182,8 +182,9 @@ export function determineVisible(flat) {
  * @param {ILabelNode} node
  * @param {ILabelNode[]} flat
  * @param {Set<ILabelNode>} visibles
+ * @param {'center'|'first'|'last'|'between-first-and-second'} groupLabelPosition
  */
-export function spanLogic(node, flat, visibles) {
+export function spanLogic(node, flat, visibles, groupLabelPosition = 'between-first-and-second') {
   if (node.children.length === 0 || !node.expand) {
     return false;
   }
@@ -208,8 +209,23 @@ export function spanLogic(node, flat, visibles) {
   const hasCollapseBox = leftFirstVisible && node.expand !== 'focus';
   const hasFocusBox = leftFirstVisible && rightLastVisible && node.children.length > 1;
   // the next visible after the left one
-  const nextVisible = flat.slice(leftVisible.index + 1, rightVisible.index + 1).find((d) => visibles.has(d));
-  const groupLabelCenter = !nextVisible ? leftVisible.center : (leftVisible.center + nextVisible.center) / 2;
+  let groupLabelCenter = 0;
+  switch (groupLabelPosition) {
+    case 'between-first-and-second':
+      const nextVisible = flat.slice(leftVisible.index + 1, rightVisible.index + 1).find((d) => visibles.has(d));
+      groupLabelCenter = !nextVisible ? leftVisible.center : (leftVisible.center + nextVisible.center) / 2;
+      break;
+    case 'center':
+      groupLabelCenter = (leftVisible.center + rightVisible.center) / 2;
+      break;
+    case 'last':
+      groupLabelCenter = rightVisible.center;
+      break;
+    case 'first':
+    default:
+      groupLabelCenter = leftVisible.center;
+      break;
+  }
 
   return {
     hasCollapseBox,

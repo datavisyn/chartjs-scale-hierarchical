@@ -40,6 +40,11 @@ interface IHierarchicalScaleOptions {
    * @default 'below'
    */
   hierarchyLabelPosition: 'below'|'above'|null;
+  /**
+   * positon of the hierarchy group label relative to the its children
+   * @default 'between-first-and-second'
+   */
+  hierarchyGroupLabelPosition: 'center'|'first'|'last'|'between-first-and-second',
 
   /**
    * object of attributes that should be managed and extacted from the tree datastrutures such as `backgroundColor` for coloring individual bars
