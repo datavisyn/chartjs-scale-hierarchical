@@ -211,20 +211,21 @@ export function spanLogic(node, flat, visibles, groupLabelPosition = 'between-fi
   // the next visible after the left one
   let groupLabelCenter = 0;
   switch (groupLabelPosition) {
-    case 'between-first-and-second':
-      const nextVisible = flat.slice(leftVisible.index + 1, rightVisible.index + 1).find((d) => visibles.has(d));
-      groupLabelCenter = !nextVisible ? leftVisible.center : (leftVisible.center + nextVisible.center) / 2;
-      break;
-    case 'center':
-      groupLabelCenter = (leftVisible.center + rightVisible.center) / 2;
-      break;
-    case 'last':
-      groupLabelCenter = rightVisible.center;
-      break;
-    case 'first':
-    default:
-      groupLabelCenter = leftVisible.center;
-      break;
+  case 'between-first-and-second': {
+    const nextVisible = flat.slice(leftVisible.index + 1, rightVisible.index + 1).find((d) => visibles.has(d));
+    groupLabelCenter = !nextVisible ? leftVisible.center : (leftVisible.center + nextVisible.center) / 2;
+    break;
+  }
+  case 'center':
+    groupLabelCenter = (leftVisible.center + rightVisible.center) / 2;
+    break;
+  case 'last':
+    groupLabelCenter = rightVisible.center;
+    break;
+  case 'first':
+  default:
+    groupLabelCenter = leftVisible.center;
+    break;
   }
 
   return {
