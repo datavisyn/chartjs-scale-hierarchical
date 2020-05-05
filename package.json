@@ -1,13 +1,14 @@
 {
   "name": "chartjs-scale-hierarchical",
   "description": "Chart.js module for hierarchical categories",
+  "homepage": "https://datavisyn.io",
   "version": "1.2.1",
   "author": {
-    "name": "Samuel Gratzl",
-    "email": "samuel.gratzl@datavisyn.io",
-    "url": "http://datavisyn.io"
+    "name": "datavisyn GmbH",
+    "email": "contact@datavisyn.io",
+    "url": "https://datavisyn.io"
   },
-  "license": "MIT",
+  "license": "BSD-3-Clause",
   "repository": {
     "type": "git",
     "url": "https://github.com/datavisyn/chartjs-scale-hierarchical.git"
