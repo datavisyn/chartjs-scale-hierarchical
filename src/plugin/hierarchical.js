@@ -51,23 +51,24 @@ function generateCode(labels) {
 }
 
 const HierarchicalPlugin = {
-  id: 'chartJsPluginHierarchical',
+  id: 'hierarchical',
 
   _isValidScaleType(chart, scale) {
-    if (!chart.config.options.scales.hasOwnProperty(scale)) {
+    const scales = chart.config.options.scales;
+    if (!Object.hasOwnProperty.call(scales, scale)) {
       return false;
     }
-    if (!Array.isArray(chart.config.options.scales[scale])) {
+    if (!Array.isArray(scales[scale])) {
       return false;
     }
-    return chart.config.options.scales[scale][0].hasOwnProperty('type');
+    return Object.hasOwnProperty.call(scales[scale][0], 'type');
   },
 
   /**
    * checks whether this plugin needs ot be enabled based on wehther one is a hierarchical axis
    */
   _enabled(chart) {
-    if (!chart.config.options.hasOwnProperty('scales')) {
+    if (!Object.hasOwnProperty.call(chart.config.options, 'scales')) {
       return null;
     }
     if (this._isValidScaleType(chart, 'xAxes') && chart.config.options.scales.xAxes[0].type === 'hierarchical') {
@@ -133,7 +134,7 @@ const HierarchicalPlugin = {
       chart.data.datasets.forEach((d) => {
         const v = nodes.map((n) => {
           while (n) {
-            if (n.hasOwnProperty(attr)) {
+            if (Object.hasOwnProperty.call(n, attr)) {
               return n[attr];
             }
             // walk up the hierarchy
@@ -184,6 +185,7 @@ const HierarchicalPlugin = {
     const boxSpanColor = scale.options.hierarchySpanColor;
     const boxSpanWidth = scale.options.hierarchySpanWidth;
     const renderLabel = scale.options.hierarchyLabelPosition;
+    const groupLabelPosition = scale.options.hierarchyGroupLabelPosition;
 
     const scaleLabel = scale.options.scaleLabel;
     const scaleLabelFontColor = helpers.valueOrDefault(scaleLabel.fontColor, defaults.global.defaultFontColor);
@@ -210,7 +212,7 @@ const HierarchicalPlugin = {
         }
         return false;
       }
-      const r = spanLogic(node, flat, visibles);
+      const r = spanLogic(node, flat, visibles, groupLabelPosition);
       if (!r) {
         return false;
       }
