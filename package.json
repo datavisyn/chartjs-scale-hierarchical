@@ -2,7 +2,7 @@
   "name": "chartjs-scale-hierarchical",
   "description": "Chart.js module for hierarchical categories",
   "homepage": "https://datavisyn.io",
-  "version": "1.2.3-SNAPSHOT",
+  "version": "2.0.0",
   "author": {
     "name": "datavisyn GmbH",
     "email": "contact@datavisyn.io",
