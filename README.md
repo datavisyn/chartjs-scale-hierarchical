@@ -1,4 +1,4 @@
-# Chart.js Hierarchical Scale Plugin - DEPRECATED
+# DEPRECATED: Chart.js Hierarchical Scale Plugin
 [![Target Discovery Platform][tdp-image]][tdp-url] [![NPM Package][npm-image]][npm-url] [![CircleCI][circleci-image]][circleci-url]
 
 Chart.js module for adding a new categorical scale which mimics a hierarchical tree.
